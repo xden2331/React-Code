@@ -24,6 +24,8 @@ class ImageCard extends React.Component {
         return (
             <div style={{gridRowEnd:`span ${this.state.spans}`}}>
                 <img 
+                // link the ref with the element, so that I can ref the dom obj in react
+                // ref: Not html but jsx
                 ref={this.imageRef}
                 alt={description}
                 src={urls.regular}/>
