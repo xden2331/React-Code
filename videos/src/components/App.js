@@ -9,6 +9,10 @@ class App extends React.Component {
 
     state = { videos: [], selectedVideo: null };
 
+    componentDidMount() {
+        this.onTermSubmit('Huawei');
+    }
+
     onTermSubmit = async (terms) => {
         const response = await youtube.get('/search', {
             params: {
@@ -26,6 +30,17 @@ class App extends React.Component {
     }
 
     render() {
+        if(!this.state.selectedVideo){
+            return (
+                <div className='app'>
+                    <div className='ui'>
+                        <div className='ui active dimmer'>
+                            <div className='ui loader'></div>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
         return (
             <div className='app ui container'>
                 <SearchBar onFormSubmit={this.onTermSubmit} />
